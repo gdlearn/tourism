@@ -82,8 +82,6 @@ export default {
     .Icons{
         overflow: hidden
         width 100%;
-        height 3rem;
-       
         background #ccc
         display flex
         flex-direction: row;
