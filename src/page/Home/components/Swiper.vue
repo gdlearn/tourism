@@ -10,7 +10,7 @@
         <!-- Optional controls -->
         <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
-        <div>testst</div>
+        <!-- <div>testst</div> -->
     </div>
 </template>
 <script>
