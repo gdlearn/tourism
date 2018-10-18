@@ -18,9 +18,9 @@
             <span>5折泡温泉</span>
         </div>
     </div>
+    
 </div>
 </template>
-
 <script>
 export default {
  name:"Icons",
@@ -61,6 +61,19 @@ export default {
        }
        ]  
      }
+ },
+ computed:{
+     pages () {
+      const pages = []
+      this.IconList.forEach((item, index) => {
+        const page = Math.floor(index / 8)
+        if (!pages[page]) {
+          pages[page] = []
+        }
+        pages[page].push(item)
+      })
+      return pages
+    }
  }
 }
 </script>
@@ -69,7 +82,7 @@ export default {
     .Icons{
         overflow: hidden
         width 100%;
-        height 4rem;
+        height 3rem;
        
         background #ccc
         display flex
@@ -102,7 +115,7 @@ export default {
 .tab-nav{
     width 100%
     height 1rem
-    margin-top: 2%;
+    margin-top: 5%;
     background: #efecec;
     display  flex
 }
