@@ -3,7 +3,7 @@
       <home-header></home-header>
       <Home-Swiper></Home-Swiper>
       <Home-Icons></Home-Icons>
-      <Guss-Like></Guss-Like>
+      <Guss-Like v-if="ShowGussList" v-bind:GussList="GussList"></Guss-Like>
     </div>
 </template>
 <script>
@@ -26,7 +26,45 @@ export default {
     // HomeWeekend
   },
   data(){
-    return {}
+    return {
+      name:'ddddd',
+      GussList:[],
+      
+    }
+  },
+  created(){
+    console.log(123132)
+    this.GussLike()
+  },
+  mounted () {
+    
+    console.log(456465)
+  },
+  computed:{
+    ShowGussList(){
+      return this.GussList.length
+    }
+  },
+  methods:{
+    GussLike(){
+      
+      this.$http.get('/api/touch/list.json?',{
+        params: {
+          region:'南昌',
+          isForeign:false,
+          page:1,
+          pageSize:10,
+          keyword:'景点门票'
+        }
+      }).then((response)=>{
+        let res_data=response.data.data
+        this.GussList=res_data.sightList
+        console.log(this.GussList)
+        
+      }).catch(function(error){
+        console.log(error)
+      });
+    }
   }
 }
 </script>

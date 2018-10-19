@@ -73,13 +73,33 @@
 			
 			
 		</ul>
+		<input type="button" name="" id="" @click="sendAjax()" value="发送ajax">
 	</div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    name:"Tablist"
+	name:"Tablist",
+	data(){
+		return {}
+	},
+	computed:{
+
+	},
+	methods:{
+		sendAjax(){
+			this.$http.get('/api/index/scan_pay?id=123132')
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+		}
+	}
+
 }
 </script>
 
