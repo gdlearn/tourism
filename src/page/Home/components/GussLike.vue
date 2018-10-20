@@ -6,25 +6,25 @@
         </div>
         <div class="guss-list">
             <ul class="guss-list-ul">
-                <li class="guss-list-li" v-for="item of GussLikelist" :key="item.id">
+                <li class="guss-list-li" v-for="item of GussList" :key="item.id">
                     <router-link to='/' class="guss-route">
                         <div class="guss-img">
-                            <img :src="item.img_url" alt="">
+                            <img :src="item.imgURL" alt="">
                         </div>
                         <div class="guss-info">
-                            <div class="guss-info-title">{{item.title}}</div>
+                            <div class="guss-info-title">{{item.name}}</div>
                             <div class="guss-info-comment">
                                <span class="guss-info-comment-star">
                                    ❤❤❤❤❤
                                 </span>
-                               <span class="guss-info-comment-num">{{item.comment_num}}条评论</span> 
+                               <span class="guss-info-comment-num">{{item.commentCount}}条评论</span> 
                             </div>
                             <div class="guss-info-local">
-                                <span class="guss-info-price">{{item.price}}起</span>
-                                <span class="guss-info-position">{{item.position}}</span>
+                                <span class="guss-info-price">￥{{item.qunarPrice}}起</span>
+                                <span class="guss-info-position">{{item.address}}</span>
                             </div>
                             <div class="guss-info-futrue">
-                                <span>{{item.future}}</span>
+                                <span>{{item.sightSimpleDesc}}</span>
                             </div>
                         </div>
                     </router-link>
@@ -37,48 +37,51 @@
 
 <script>
 export default {
- name:'GussLike',
+ name:'GussList',
+ props:{
+     GussList:Array
+ },
  data(){
      return {
-        GussLikelist:[{
-            id:'1',
-            title:'江西绿地中心303观光厅',
-            img_url:'//img1.qunarzz.com/sight/p0/1509/f5/f5f99f75ee6fee43.water.jpg_110x110_7db92940.jpg',
-            comment_num:'234',
-            price:'58',
-            position:'红谷滩新区',
-            future:'江西俯瞰绿地的好去处',
-            star:'5'
-        },{
-            id:'2',
-            title:'南昌万达电影乐园',
-            img_url:'//img1.qunarzz.com/sight/p0/1610/83/83a873f755d64992a3.water.jpg_110x110_319d59ab.jpg',
-            comment_num:'789',
-            price:'89',
-            position:'九龙湖新区',
-            future:'童话世界，从梦幻乐到真实',
-            star:'5'
-        },
-        {
-            id:'3',
-            title:'厚田沙漠',
-            img_url:'//img1.qunarzz.com/sight/p0/1505/d1/d1466018b22cc226.water.jpg_110x110_c0bbd6da.jpg',
-            comment_num:'234',
-            price:'58',
-            position:'东湖区',
-            future:'江西俯瞰绿地的好去处',
-            star:'5'
-        },{
-            id:'4',
-            title:'梅林景区',
-            img_url:'//img1.qunarzz.com/sight/p0/1411/25/0ef2f8ab5cca36253ef726a113c8e6f5.water.jpg_110x110_1c8fe943.jpg',
-            comment_num:'5556',
-            price:'128',
-            position:'新建区',
-            future:'江西旅游必去景区',
-            star:'5'
-        }
-        ]
+    //     GussLikelist:[{
+    //         id:'1',
+    //         title:'江西绿地中心303观光厅',
+    //         img_url:'//img1.qunarzz.com/sight/p0/1509/f5/f5f99f75ee6fee43.water.jpg_110x110_7db92940.jpg',
+    //         comment_num:'234',
+    //         price:'58',
+    //         position:'红谷滩新区',
+    //         future:'江西俯瞰绿地的好去处',
+    //         star:'5'
+    //     },{
+    //         id:'2',
+    //         title:'南昌万达电影乐园',
+    //         img_url:'//img1.qunarzz.com/sight/p0/1610/83/83a873f755d64992a3.water.jpg_110x110_319d59ab.jpg',
+    //         comment_num:'789',
+    //         price:'89',
+    //         position:'九龙湖新区',
+    //         future:'童话世界，从梦幻乐到真实',
+    //         star:'5'
+    //     },
+    //     {
+    //         id:'3',
+    //         title:'厚田沙漠',
+    //         img_url:'//img1.qunarzz.com/sight/p0/1505/d1/d1466018b22cc226.water.jpg_110x110_c0bbd6da.jpg',
+    //         comment_num:'234',
+    //         price:'58',
+    //         position:'东湖区',
+    //         future:'江西俯瞰绿地的好去处',
+    //         star:'5'
+    //     },{
+    //         id:'4',
+    //         title:'梅林景区',
+    //         img_url:'//img1.qunarzz.com/sight/p0/1411/25/0ef2f8ab5cca36253ef726a113c8e6f5.water.jpg_110x110_1c8fe943.jpg',
+    //         comment_num:'5556',
+    //         price:'128',
+    //         position:'新建区',
+    //         future:'江西旅游必去景区',
+    //         star:'5'
+    //     }
+    //     ]
      }
  }
 }

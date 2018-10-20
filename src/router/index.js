@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/page/home/Home'
 import TabList from '@/page/tablist/Home'
+import TourDetail from '@/page/tourdetail/Home'
 // import City from '@/page/city/City'
 // import Detail from '@/page/detail/Detail'
 
@@ -17,6 +18,11 @@ export default new Router({
     path: '/TabList',
     name: 'TabList',
     component: TabList
+  },
+  {
+    path: '/TourDetail',
+    name: 'TourDetail',
+    component: TourDetail
   }
   // , {
   //   path: '/city',
