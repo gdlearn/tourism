@@ -2,10 +2,12 @@
 <div>
     <div class="Icons">
         <div class="icon" v-for="item of IconList" :key="item.id">
+            <router-link :to="'/Tablist/' + item.keywords">
                 <div class="icon-img">
                     <img :src="item.icon_url" alt="">
                 </div>
                 <p class="icon-desc">{{item.text}}</p>
+            </router-link>
         </div>
     </div>
     <div class="tab-nav">
@@ -29,35 +31,44 @@ export default {
        IconList:[{
          id:'1',
          icon_url:'http://gdlearn.com/images/icon-img/icon1.png' ,
-         text:'景点门票' 
+         text:'景点门票',
+         keywords:"景点门票"
        },{
          id:'2',
          icon_url:'http://gdlearn.com/images/icon-img/icon2.png',
-          text:'泡温泉'  
+         text:'本地玩乐',
+         keywords:"本地玩乐"  
        },{
          id:'3',
          icon_url:'http://gdlearn.com/images/icon-img/icon3.png',
-         text:'分界洲岛' 
+         text:'打卡圣地',
+         keywords:"江西"   
        },{
          id:'4',
          icon_url:'http://gdlearn.com/images/icon-img/icon4.png',
-          text:'一日游' 
+         text:'一日游',
+         keywords:"一日游" 
        },{
          id:'5',
          icon_url:'http://gdlearn.com/images/icon-img/icon5.png'  ,
-         text:'自然风光' 
+         text:'游乐场' ,
+         keywords:"游乐场"
        },{
          id:'6',
          icon_url:'http://gdlearn.com/images/icon-img/icon1.png',
-         text:'必游榜单'   
+         text:'泡温泉',
+         keywords:"温泉"   
        },{
          id:'7',
          icon_url:'http://gdlearn.com/images/icon-img/icon2.png' ,
-          text:'大小洞天' 
+          text:'南昌必游',
+          keywords:"景点门票" 
        },{
          id:'8',
          icon_url:'http://gdlearn.com/images/icon-img/icon3.png' ,
-          text:'穷游'  
+         text:'婺源',
+         keywords:"婺源"
+            
        }
        ]  
      }

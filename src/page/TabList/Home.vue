@@ -1,7 +1,7 @@
 <template>
     <div class="Home">
         <div class="lb-header">
-		<a href="" class="lb-header-left"></a>
+		<router-link class="lb-header-left" to="/"></router-link>
 		<div class="lb-header-search">
 			<input type="text" name="keyword" id="lb-input-search" placeholder="请输入城市或景点">
 		</div>
@@ -25,55 +25,56 @@
 	<!-- 列表栏 -->
 	<div class="lb-list">
 		<ul class="lb-view-list">
-			<li class="lb-sight-group">
+			<li class="lb-sight-group" v-for="item of GussList" :key="item.id">
 				<div class="lb-item-content">
 					<div class="lb-sight-info">
 						<a href="#" class="lb-sight-link">
 							<div class="lb-sight-img">
-								<img src="https://imgs.qunarzz.com/sight/p0/1609/94/945ab5b76758703a3.water.jpg_110x110_03678bf6.jpg">
-								<span class="lb-sight-bookingflag">随买随用</span>
+								<img :src="item.imgURL">
+								<span class="lb-sight-bookingflag" v-if="item.bookingTag.label">{{item.bookingTag.label}}</span>
 							</div>
 							<div class="lb-sight-detail">
-								<h1 class="lb-sight-name">滕王阁(4A)</h1>
+								<h1 class="lb-sight-name">{{item.name}}</h1>
 								<div class="lb-sight-comments">
 									<span class="lb-sight-level">星星星星星</span>
-									<span class="lb-comments-num">2410评论</span>
+									<span class="lb-comments-num">{{item.commentCount}}评论</span>
 								</div>
 								<div class="lb-sight-pricecon">
 									<div class="lb-sight-price">
-										￥<em>45</em>
+										￥<em>{{item.qunarPrice}}</em>
 										<span> 起</span>
 									</div>
 									<div class="lb-sight-location">
-										<span>东湖区</span>
+										<span>{{item.address}}</span>
 									</div>
 								</div>
 								<div class="lb-sight-taglist">
-									<span class="lb-sight-tag lb-tag-button1"><em>古建筑排名第一</em></span>
-									<span class="lb-sight-tag lb-tag-button2"><em>赠券</em></span>
-									<span class="lb-sight-tag lb-tag-button3"><em>醉美花海</em></span>
+									<span class="lb-sight-tag lb-tag-button"  v-for="tags of item.tagList" :key="tags.index"><em>tags.label</em></span>
+									<!-- <span class="lb-sight-tag lb-tag-button2"><em>赠券</em></span>
+									<span class="lb-sight-tag lb-tag-button3"><em>醉美花海</em></span> -->
 								</div>
 							</div>
 						</a>
 					</div>
-					<div class="lbf-border-top">
+					<div class="lbf-border-top" v-for="tablist of item.priceList" :key="tablist.ticketTypeId">
 						<a href="#" class="lb-linkarea">
-							<h2 class="lb-ticket-name">滕王阁《滕王宴乐》实景演出成人票</h2>
-							<span class="lb-ticket-qunarprice">￥<em>88</em></span>
+							<h2 class="lb-ticket-name">{{tablist.ticketTypeName}}</h2>
+							<span class="lb-ticket-qunarprice">￥<em>{{tablist.qunarPrice}}</em></span>
 						</a>
 					</div>
-					<div class="lbf-border-top">
+					<!-- <div class="lbf-border-top">
 						<a href="#" class="lb-linkarea">
 							<h2 class="lb-ticket-name">【提前订】滕王阁成人票</h2>
 							<span class="lb-ticket-qunarprice">￥<em>45</em></span>
 						</a>
-					</div>
+					</div> -->
 				</div>
 			</li>
 			
 			
 		</ul>
-		<input type="button" name="" id="" @click="sendAjax()" value="发送ajax">
+		
+		<span>132123 {{this.$route.params.keywords}}</span>
 	</div>
     </div>
 </template>
@@ -83,19 +84,45 @@ import axios from 'axios'
 export default {
 	name:"Tablist",
 	data(){
-		return {}
+		return {
+			GussList:[]
+		}
+	},
+	created(){
+		console.log('tablist')
+		this.sendAjax(this.$route.params.keywords)
+	},
+	mounted(){
+		
 	},
 	computed:{
-
+		
+	},
+	watch:{
+    $route(to,from){
+			// console.log(to,from);
+			if(to.name=="TabList"){
+				console.log(this.$route.params.keywords)
+				this.sendAjax(this.$route.params.keywords)
+			}
+    	}
 	},
 	methods:{
-		sendAjax(){
-			this.$http.get('/api/index/scan_pay?id=123132')
-			.then(function (response) {
-				console.log(response);
-			})
-			.catch(function (error) {
-				console.log(error);
+		sendAjax:function(params){
+			this.$http.get('/api/touch/list.json?',{
+				params: {
+				region:'南昌',
+				isForeign:false,
+				page:1,
+				pageSize:10,
+				keyword:params
+        		}
+			}).then((response)=>{
+			let res_data=response.data.data
+			this.GussList=res_data.sightList
+			console.log(this.GussList)
+			}).catch(function(error){
+			console.log(error)
 			});
 		}
 	}
