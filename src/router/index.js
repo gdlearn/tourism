@@ -15,7 +15,7 @@ export default new Router({
     component: Home
   },
   {
-    path: '/TabList',
+    path: '/TabList/:keywords',
     name: 'TabList',
     component: TabList
   },

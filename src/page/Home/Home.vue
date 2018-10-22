@@ -53,7 +53,7 @@ export default {
           region:'南昌',
           isForeign:false,
           page:1,
-          pageSize:10,
+          pageSize:5,
           keyword:'景点门票'
         }
       }).then((response)=>{
