@@ -29,14 +29,21 @@ export default {
             },
             swiperList:[{
                 id:'1',
-                imgurl:"//gw.alicdn.com/tfs/TB1h3fPihjaK1RjSZKzXXXVwXXa-1125-352.jpg_790x10000Q75.jpg_.webp"
+                imgurl:"http://img1.qunarzz.com/piao/fusion/1809/ff/1bf7d3a4f6591002.jpg_750x200_40809f2a.jpg"
             },{
                 id:'2',
-                imgurl:"//gw.alicdn.com/imgextra/i4/O1CN011Tlm8JuHMDoKgSX_!!0-travel.jpg_790x10000Q75.jpg_.webp"
+                imgurl:"http://img1.qunarzz.com/piao/fusion/1809/31/da037478f37cf202.jpg_750x200_a02cf862.jpg"
             },{
                id:'3',
-               imgurl:"//gw.alicdn.com/tfs/TB1Q3FDEXuWBuNjSszbXXcS7FXa-1125-352.jpg_790x10000Q75.jpg_.webp" 
-            }]
+               imgurl:"http://img1.qunarzz.com/piao/fusion/1809/c6/2467595fffc3b302.jpg_750x200_cca13d51.jpg" 
+            },{
+                id:'4',
+                imgurl:"http://img1.qunarzz.com/piao/fusion/1809/86/deb33800de224c02.jpg_750x200_74fb795e.jpg"
+            },{
+               id:'5',
+               imgurl:"http://img1.qunarzz.com/piao/fusion/1611/b6/38ea2abdaafa0f02.jpg_750x200_f47f3b0a.jpg" 
+            }
+            ]
         }
     },
    
