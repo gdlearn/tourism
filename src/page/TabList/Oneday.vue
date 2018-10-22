@@ -24,20 +24,20 @@
 
 	<!-- 列表栏 -->
 	<div class="lb-list">
-		<ul class="lb-view-list">
-			<li class="lb-sight-group" v-for="item of GussList" :key="item.id">
+		<ul class="lb-view-list" >
+			<li class="lb-sight-group"  v-for="item of GussList" :key="item.pid">
 				<div class="lb-item-content">
 					<div class="lb-sight-info">
 						<a href="#" class="lb-sight-link">
 							<div class="lb-sight-img">
-								<img :src="item.imgURL">
-								<span class="lb-sight-bookingflag" v-if="item.bookingTag">{{item.bookingTag.label}}</span>
+								<img :src="item.imgUrl">
+								<!-- <span class="lb-sight-bookingflag" v-if="item.bookingTag.label">{{item.bookingTag.label}}</span> -->
 							</div>
 							<div class="lb-sight-detail">
 								<h1 class="lb-sight-name">{{item.name}}</h1>
 								<div class="lb-sight-comments">
-									<span class="lb-sight-level">星星星星星</span>
-									<span class="lb-comments-num">{{item.commentCount}}评论</span>
+									<!-- <span class="lb-sight-level">星星星星星</span> -->
+									<!-- <span class="lb-comments-num">{{item.commentCount}}评论</span> -->
 								</div>
 								<div class="lb-sight-pricecon">
 									<div class="lb-sight-price">
@@ -48,33 +48,22 @@
 										<span>{{item.address}}</span>
 									</div>
 								</div>
-								<div class="lb-sight-taglist" >
-									<span v-if="item.tagList" v-for="(tagss,index) of item.tagList" :key="index" :class="['lb-tag-button'+(index+1)]" class="lb-sight-tag "><em>{{tagss.label}}</em></span>
+								<div class="lb-sight-taglist">
+									<span class="lb-sight-tag lb-tag-button"  v-for="tags of item.tagList" :key="tags.index"><em>tags.label</em></span>
 									<!-- <span class="lb-sight-tag lb-tag-button2"><em>赠券</em></span>
 									<span class="lb-sight-tag lb-tag-button3"><em>醉美花海</em></span> -->
 								</div>
 							</div>
 						</a>
 					</div>
-					<div class="lbf-border-top" v-for="tablist of item.priceList" :key="tablist.ticketTypeId">
-						<a href="#" class="lb-linkarea">
-							<h2 class="lb-ticket-name">{{tablist.ticketTypeName}}</h2>
-							<span class="lb-ticket-qunarprice">￥<em>{{tablist.qunarPrice}}</em></span>
-						</a>
-					</div>
-					<!-- <div class="lbf-border-top">
-						<a href="#" class="lb-linkarea">
-							<h2 class="lb-ticket-name">【提前订】滕王阁成人票</h2>
-							<span class="lb-ticket-qunarprice">￥<em>45</em></span>
-						</a>
-					</div> -->
+				
 				</div>
 			</li>
 			
 			
 		</ul>
 		
-		<span>132123 {{this.$route.params.keywords}}</span>
+		<span>{{btext}}</span>
 	</div>
     </div>
 </template>
@@ -86,12 +75,14 @@ export default {
 	name:"Tablist",
 	data(){
 		return {
-			GussList:[]
+            GussList:[],
+            btext:"我是B组件内容"
 		}
 	},
 	created(){
-		console.log('tablist')
-		this.sendAjax(this.$route.params.keywords)
+        console.log('tablist')
+        this.lisenToMyBoy()
+		// this.sendAjax(this.$route.params.keywords)
 	},
 	mounted(){
 		
@@ -100,46 +91,16 @@ export default {
 		
 	},
 	watch:{
-    $route(to,from){
-			// console.log(to,from);
-			if(to.name=="TabList"){
-				console.log(this.$route.params.keywords)
-				this.sendAjax(this.$route.params.keywords)
-			}
-    	}
+    
 	},
 	methods:{
-		sendAjax:function(params){
-			this.$http.get('/api/touch/list.json?',{
-				params: {
-				region:'南昌',
-				cityName:'南昌',
-				isForeign:false,
-				page:1,
-				limitCondition:params=="一日游"?'oneDayTour':"",
-				pageSize:10,
-				keyword:params
-        		}
-			}).then((response)=>{
-			let res_data=response.data.data
-			if(res_data.ticketList){
-				this.GussList=res_data.ticketList
-				this.sendBrother(this.GussList)
-				console.log('123123')
-			}else{
-				this.GussList=res_data.sightList
-			}
-			console.log(this.GussList)
-			
-			}).catch(function(error){
-			console.log(error)
-			});
-		},
-		sendBrother:function(oneday)
-		{
-			   bus.$emit('oneday',oneday);
-			  this.$router.push('../Oneday')
-		}
+		lisenToMyBoy:function(msg){
+            bus.$on("oneday",(message)=>{   //这里最好用箭头函数，不然this指向有问题
+                 console.log('emit',message)  
+                 this.GussList = message  
+                   
+            })
+        }
 	}
 
 }

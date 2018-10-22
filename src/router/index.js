@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/page/home/Home'
 import TabList from '@/page/tablist/Home'
 import TourDetail from '@/page/tourdetail/Home'
+import Oneday from '@/page/tablist/Oneday'
 // import City from '@/page/city/City'
 // import Detail from '@/page/detail/Detail'
 
@@ -18,6 +19,11 @@ export default new Router({
     path: '/TabList/:keywords',
     name: 'TabList',
     component: TabList
+  },
+  {
+    path: '/Oneday',
+    name: 'Oneday',
+    component: Oneday
   },
   {
     path: '/TourDetail',
