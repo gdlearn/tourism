@@ -3,6 +3,7 @@
       <home-header></home-header>
       <Home-Swiper></Home-Swiper>
       <Home-Icons></Home-Icons>
+      <Hot-Rank v-if="ShowGussList" v-bind:HotRank="GussList"></Hot-Rank>
       <Guss-Like v-if="ShowGussList" v-bind:GussList="GussList"></Guss-Like>
     </div>
 </template>
@@ -11,7 +12,8 @@ import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import GussLike from './components/GussLike'
-// import HomeRecommend from './components/Recommend'
+import HotRank from  './components/HotRank'
+// import HotRank from './components/hotrank'
 // import HomeWeekend from './components/Weekend'
 // import axios from 'axios'
 // import { mapState } from 'vuex'
@@ -21,9 +23,9 @@ export default {
     HomeHeader,
     HomeSwiper,
     HomeIcons,
-    GussLike
-    // HomeRecommend,
-    // HomeWeekend
+    GussLike,
+    HotRank,
+   
   },
   data(){
     return {
@@ -54,7 +56,7 @@ export default {
           isForeign:false,
           page:1,
           pageSize:5,
-          keyword:'景点门票'
+          keyword:'江西'
         }
       }).then((response)=>{
         let res_data=response.data.data

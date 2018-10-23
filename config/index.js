@@ -59,7 +59,15 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
-
+    proxyTable: {
+      '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
+      target: 'http://touch.piao.qunar.com', //源地址 
+      changeOrigin: true, //改变源 
+      pathRewrite: { 
+        '^/api': 'http://touch.piao.qunar.com' //路径重写 
+        } 
+      }
+    },
     /**
      * Source Maps
      */

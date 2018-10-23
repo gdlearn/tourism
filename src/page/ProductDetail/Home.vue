@@ -1,12 +1,13 @@
 <template>
     <div class="main">
-       	<!-- 详情页头部 -->
-			<div class="xq-headfigure">
+        <div class="forlist">
+       	    <!-- 详情页头部 -->
+			<div class="xq-headfigure"  >
 				<div class="xq-headfigure-wrap">
-					<img class="xq-headfigure-img" src="https://img1.qunarzz.com/sight/p0/1602/49/4917c5b8d400d5b890.img.jpg_600x330_4431296c.jpg">
+					<img class="xq-headfigure-img" :src="ProductDetail.imgUrl">
 				</div>
 				<div class="xq-headfeagure-info">
-					<div class="xq-headfeagure-title">凤凰沟(AAAA景区)</div>
+					<div class="xq-headfeagure-title">{{ProductDetail.sightName}}</div>
 				</div>
 				<div class="xq-imgswipeicon">
 					<div class="xq-imgswipeicon-img"><img src="http://mquanquan.com/static/image/erma/tourism/ly-iconimg.png"></div>
@@ -18,10 +19,10 @@
 			</div>
         <!-- 详情页标题 -->
         <div class="mp-prdcard-con">
-        <div class="mp-prdcard-title mp-ellipsis2">篁岭成人票+索道上下行成人票</div>
+        <div class="mp-prdcard-title mp-ellipsis2">{{ProductDetail.ticketName}}</div>
         <div class="mp-prdcard-pricecon">
             <em class="mp-prdcard-priceicon">¥</em>
-            <span class="mp-prdcard-pricetext">140</span>
+            <span class="mp-prdcard-pricetext">{{ProductDetail.qunarPrice}}</span>
         </div>
         <div class="mp-prddetail-tagarea">   
                 <div class="mp-prddetail-ul">
@@ -56,8 +57,8 @@
                     <img src="http://mquanquan.com/static/image/erma/tourism/icon-xing2.png" alt="">
                 </span>
             </span>
-            <span class="mp-comments-tagscore">4.0分</span>
-            <span class="mp-comments-totalnum">535条评论&nbsp;
+            <span class="mp-comments-tagscore">{{ProductDetail.avgScore}}分</span>
+            <span class="mp-comments-totalnum">{{ProductDetail.commentTotal}}条评论&nbsp;
             <span class="mp-iconfont mp-comments-rightarrow">F</span>
             </span>
         </div>
@@ -67,82 +68,73 @@
             <div class="mp-ticketcontent">
                     <div class="mp-ticketcontent-item">
                         <p class="mp-ticketcontent-title">预订说明</p>
-                            <div class="mp-ticketcontent-line">
-                                <div class="mp-ticketcontent-keyword">预订时间：</div>
+                            <!-- <div class="mp-ticketcontent-line" v-for="item_yuding of ProductDetail.productBookingInfo.bookDescription.contents" :key="item_yuding.index">
+                                <div class="mp-ticketcontent-keyword">{{item_yuding.title}}</div>
                                 <div class="mp-ticketcontent-con">
                                     <div class="mp-ellipsis">
-                                        <span class="mp-ticketcontent-light">可订明日</span>
+                                        <span class="mp-ticketcontent-light" v-if="item_yuding.notice">{{item_yuding.notice}}</span>
                                     </div>
-                                    <p class="mp-ticketcontent-desc">需要在游玩当天的08:00前预订</p>
+                                    <p class="mp-ticketcontent-desc">{{item_yuding.desc}}</p>
                                 </div>
-                            </div>
-                            <div class="mp-ticketcontent-line">
-                                <div class="mp-ticketcontent-keyword">有 效 期：</div>
-                                <div class="mp-ticketcontent-con">
-                                    <p class="mp-ticketcontent-desc">游玩日期当天有效</p>
-                                </div>
-                            </div>
-                            <div class="mp-ticketcontent-line">
-                                <div class="mp-ticketcontent-keyword">限购政策：</div>
-                                <div class="mp-ticketcontent-con">
-                                    <p class="mp-ticketcontent-desc">每笔订单最多购买10份</p>
-                                </div>
-                            </div>
+                            </div> -->
+                          
                     </div>
 
                     <div class="mp-ticketcontent-item">
-                        <p class="mp-ticketcontent-title">入园须知</p>
+                        <!-- <p class="mp-ticketcontent-title">{{ProductDetail.productBookingInfo.enterGardenDescription.enterGardenTitle.title}}</p>
                             <div class="mp-ticketcontent-line">
-                                <div class="mp-ticketcontent-keyword">入园方式：</div>
+                                <div class="mp-ticketcontent-keyword">{{ProductDetail.productBookingInfo.enterGardenDescription.enterType.title}}</div>
                                 <div class="mp-ticketcontent-con">
                                     <div class="mp-ticketcontent-lightcon mp-ellipsis">
-                                        <span class="mp-ticketcontent-light">需提前换票入园</span>
+                                        <span class="mp-ticketcontent-light">{{ProductDetail.productBookingInfo.enterGardenDescription.notice}}</span>
                                     </div>
                                 </div>
                             </div>
-                                    <p class="mp-ticketcontent-sepline">
-                                        <span class="mp-ticketcontent-linetag"><img class="mp-ticketcontent-innericon" src="//img1.qunarzz.com/piao/fusion/1703/4f/60b1629ae5d22702.png"></span>凭商家确认短信、身份证到景区售票处进行换票
-                                    </p>
-                                    <p class="mp-ticketcontent-sepline">
+                                    <p class="mp-ticketcontent-sepline" v-for="items_notice of ProductDetail.productBookingInfo.enterGardenDescription.enterType.contents" :key="items_notice.index">
+                                        <span class="mp-ticketcontent-linetag"><img class="mp-ticketcontent-innericon" :src="items_notice.titleInfo.iconUrl"></span>
+                                        {{items_notice.titleInfo.desc}}
+                                    </p> -->
+                                    <!-- <p class="mp-ticketcontent-sepline">
                                         <span class="mp-ticketcontent-linetag"><img class="mp-ticketcontent-innericon" src="//img1.qunarzz.com/piao/fusion/1703/e2/8f4c1d0b353c9402.png"></span>在检票口凭票入园
-                                    </p>
+                                    </p> -->
 
                             <p class="mp-ticketcontent-line"><span class="mp-ticketcontent-keyword">商家短信：</span></p>
                             <p class="mp-ticketcontent-desc">商家确认短信会在下单成功后2分钟内发送</p>
 
-                            <p class="mp-ticketcontent-line"><span class="mp-ticketcontent-keyword">景区开放时间：</span></p>
-                            <p class="mp-ticketcontent-desc">07:30～17:00开放；</p>
+                            <!-- <p class="mp-ticketcontent-line"><span class="mp-ticketcontent-keyword">景区开放时间：</span></p>
+                            <p class="mp-ticketcontent-desc">07:30～17:00开放；</p> -->
                         
 
 
                     </div>
+                    <!-- 退款说明 -->
                     <div class="mp-ticketcontent-item">
-                        <p class="mp-ticketcontent-title">退款说明</p>
-                            <div class="mp-ticketcontent-line">
-                                <div class="mp-ticketcontent-keyword">退款规则：</div>
+                        <!-- <p class="mp-ticketcontent-title">{{ProductDetail.productBookingInfo.refundDescription.titleInfo.title}}</p> -->
+                            <!-- <div class="mp-ticketcontent-line" v-for="items of ProductDetail.productBookingInfo.refundDescription.centents" :key="items.index">
+                                <div class="mp-ticketcontent-keyword">{{items.title}}：</div>
                                 <div class="mp-ticketcontent-con">
                                     <div class="mp-ellipsis">
-                                        <span class="mp-ticketcontent-light">条件退</span>
+                                        <span class="mp-ticketcontent-light" v-if="items.notice">{{items.notice}}</span>
                                     </div>
-                                    <p class="mp-ticketcontent-desc">使用日期截止后30天00:00前可申请退款<br>不支持部分退款<br></p>
+                                    <p class="mp-ticketcontent-desc">{{items.desc}}</p>
                                 </div>
-                            </div>
-                            <div class="mp-ticketcontent-line">
+                            </div> -->
+                            <!-- <div class="mp-ticketcontent-line">
                                 <div class="mp-ticketcontent-keyword">极速处理：</div>
                                 <div class="mp-ticketcontent-con">
                                     <p class="mp-ticketcontent-desc">去哪儿网承诺，提交申请后一个工作日内完成退款申请的审核</p>
                                 </div>
-                            </div>
+                            </div> -->
                     </div>
 
                     <div class="mp-ticketcontent-item">
                         <p class="mp-ticketcontent-title">费用说明</p>
-                        <p class="mp-ticketcontent-line" mp-role="feeDesc">篁岭成人票+索道上下行一张</p>
+                        <!-- <p class="mp-ticketcontent-line" mp-role="feeDesc">{{ProductDetail.productBookingInfo.feeDescription.desc}}</p> -->
                     </div>
 
                         <div class="mp-ticketcontent-item"  mp-role="usingDescArea">
                             <p class="mp-ticketcontent-title">使用说明</p>
-                            <p class="mp-ticketcontent-line">a. 1.2米（含）～1.5米（不含）的儿童享优惠票。<br>b. 外省初中以下学生，60岁以上老人请（凭相关证件）享优惠门票。<br>c. 1.2米（不含）以下的儿童免票。<br>d. 残疾人、现役军人（在建军节）凭相关证件免费。<br>* 以上信息仅供参考，具体以景区当日信息为准。</p>
+                            <!-- <p class="mp-ticketcontent-line">{{ProductDetail.productBookingInfo.usingDescription.desc}}</p> -->
                         </div>
             
                 <div class="mp-ticketcontent-more" mp-role="useDescMoreBtn" style="display: block;">
@@ -159,12 +151,12 @@
                             <span class="mp-sightlist-item mp-border-left">
                                 <a href="//touch.piao.qunar.com/touch/detail_2871359243.html" class="mp-sightlist-link">
                                 <span class="mp-oneday-iconfont mp-sightlist-temple"></span>
-                                婺源篁岭(4A)</a></span>
+                                {{ProductDetail.sightName}}</a></span>
                         </div>
                     </div>
             </div>
             <div class="mp-prddetail-group" style="position:relative">
-                <h3 class="mp-prddetail-title">供应商：华东兴兴自营店</h3>
+                <!-- <h3 class="mp-prddetail-title">{{ProductDetail.supplierInfo.supplierName}}</h3> -->
                 <div class="mp-prddetail-content mp-border-top">
                     <div class="mp-sullier" mp-role="supllierInfo">
                         消费者成功预订门票并按产品规则使用，出游当日无法按照原订单入园，联系供应商（或去哪儿网）后10分钟未解决，消费者可在景区购买门市价入园并保留票根，去哪儿网将双倍赔付差价。
@@ -313,7 +305,7 @@
             <div class="mp-fixbooking-con mpg-flexbox" >
                 <div class="mp-fixbooking-pricecon mp-border-top">
                     <span class="mp-fixbooking-priceitem ">
-                        价格<em class="mp-fixbooking-priceicon">¥</em><span class="mp-fixbooking-price">140</span>
+                        价格<em class="mp-fixbooking-priceicon">¥</em><span class="mp-fixbooking-price">{{ProductDetail.qunarPrice}}</span>
                     </span>
 
                 </div>
@@ -324,19 +316,20 @@
                 <div class="mp-weekend-collection"></div>
             </div>
         </div>
+    </div>
 </template>
 <script>
 export default {
     name:'home',
     data(){
         return{
-
+            ProductDetail:[]
         }
     },
    created(){
         console.log(this.$route.params.ProductId)
         // this.lisenToMyBoy()
-		// this.sendAjax(this.$route.params.keywords)
+		 this.sendDetailAjax(this.$route.params.ProductId)
 	},
 	mounted(){
 		
@@ -349,14 +342,24 @@ export default {
 			// console.log(to,from);
 			if(to.name=="ProductDetail"){
 				console.log(this.$route.params.ProductId)
-				// this.sendAjax(this.$route.params.keywords)
+				this.sendDetailAjax(this.$route.params.ProductId)
 			}
     	}
 	
 	},
 	methods:{
-		lisenToMyBoy:function(msg){
-           
+		sendDetailAjax:function(params){
+            // if(params=="" || params=="null")return false;
+           this.$http.get('/api/touch/productdetail.json?',{
+               params:{
+                   productId:params
+               }
+           }).then(response=>{
+               console.log('productdetail',response.data.data)
+               this.ProductDetail=response.data.data
+           }).catch(error=>{
+               console.log(error)
+           });
         },
         goback:function(){
            this.$router.back(-1)

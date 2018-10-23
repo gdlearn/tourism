@@ -10,17 +10,18 @@
                     <router-link to='/' class="guss-route">
                         <div class="guss-img">
                             <img :src="item.imgURL" alt="">
+                            <span class="lb-sight-bookingflag" v-if="item.bookingTag">{{item.bookingTag.label}}</span>
                         </div>
                         <div class="guss-info">
                             <div class="guss-info-title">{{item.name}}</div>
                             <div class="guss-info-comment">
                                <span class="guss-info-comment-star">
-                                   ❤❤❤❤❤
+                                  *******
                                 </span>
                                <span class="guss-info-comment-num">{{item.commentCount}}条评论</span> 
                             </div>
                             <div class="guss-info-local">
-                                <span class="guss-info-price">￥{{item.qunarPrice}}起</span>
+                                <span class="guss-info-price">￥{{item.qunarPrice}}<span style="color:#000;font-size:0.1rem">起</span></span>
                                 <span class="guss-info-position">{{item.address}}</span>
                             </div>
                             <div class="guss-info-futrue">
@@ -125,6 +126,7 @@ export default {
 }
 .guss-img{
     width: 28%;
+    position: relative;
 }
 .guss-img img{
     width 100%
@@ -143,30 +145,36 @@ export default {
     margin-top: 0.2rem;
 }
 .guss-info-title{
-    font-size: 0.3rem;
-    font-weight: bold;
-   
+       font-size: 0.3rem;
+    /* font-weight: bold; */
     margin: 0.1rem 0 0.1rem 0.3rem;
+    color: #000;
 }
 .guss-info-futrue{
-    font-size: 0.2rem;
+        font-size: 0.2rem;
     margin-top: 0.3rem;
     margin-left: 0.3rem;
+    color: red;
 }
 .guss-info-price{
     float: left;
     font-size: 0.35rem;
     color: #fda119;
-    font-weight: bold;
+    // font-weight: bold;
 
 }
 .guss-info-position{
-    float right
-    font-size: 0.2rem
+        float: right;
+    font-size: 0.2rem;
+    color: #000;
 }
 .guss-info-comment-num{
-    font-size 0.2rem
+        font-size: 0.2rem;
     margin-left: 0.3rem;
+    color: #a59c9c;
 }
-
+.lb-sight-bookingflag{
+		position: absolute; left: 0; top: 0; background-image: url(https://img1.qunarzz.com/piao/fusion/1802/20/2ba6d10b17972e02.png); width: 1.04rem; height: .38rem; background-size: 100%; background-repeat: no-repeat; color: #fff;
+		font-size: .2rem; line-height: .38rem; text-indent: .08rem;
+	}
 </style>
