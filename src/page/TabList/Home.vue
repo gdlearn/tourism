@@ -57,10 +57,10 @@
 						</a>
 					</div>
 					<div class="lbf-border-top" v-for="tablist of item.priceList" :key="tablist.ticketTypeId">
-						<a href="#" class="lb-linkarea">
+						<router-link :to="'/ProductDetail/'+tablist.productId" class="lb-linkarea">
 							<h2 class="lb-ticket-name">{{tablist.ticketTypeName}}</h2>
 							<span class="lb-ticket-qunarprice">￥<em>{{tablist.qunarPrice}}</em></span>
-						</a>
+						</router-link>
 					</div>
 					<!-- <div class="lbf-border-top">
 						<a href="#" class="lb-linkarea">

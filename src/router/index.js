@@ -4,6 +4,7 @@ import Home from '@/page/home/Home'
 import TabList from '@/page/tablist/Home'
 import TourDetail from '@/page/tourdetail/Home'
 import Oneday from '@/page/tablist/Oneday'
+import ProductDetail from '@/page/ProductDetail/Home'
 // import City from '@/page/city/City'
 // import Detail from '@/page/detail/Detail'
 
@@ -29,6 +30,11 @@ export default new Router({
     path: '/TourDetail',
     name: 'TourDetail',
     component: TourDetail
+  },
+  {
+    path: '/ProductDetail/:ProductId',
+    name: 'ProductDetail',
+    component: ProductDetail
   }
   // , {
   //   path: '/city',
