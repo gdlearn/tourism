@@ -1,8 +1,8 @@
 'use strict'
 require('./check-versions')()
 
-process.env.NODE_ENV = 'production'
-
+// process.env.NODE_ENV = 'production'
+// process.env.API_ROOT='"http://touch.piao.qunar.com/"'
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')

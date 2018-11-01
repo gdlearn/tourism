@@ -50,7 +50,7 @@ export default {
   methods:{
     GussLike(){
       
-      this.$http.get('/api/touch/list.json?',{
+      this.$http.get('/api/touch/list.json',{
         params: {
           region:'南昌',
           isForeign:false,
@@ -58,6 +58,7 @@ export default {
           pageSize:5,
           keyword:'江西'
         }
+
       }).then((response)=>{
         let res_data=response.data.data
         this.GussList=res_data.sightList

@@ -14,7 +14,14 @@ import './assets/styles/iconfont.css'
 // import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
+axios.defaults.headers.post['Content-type']="application/json";
 Vue.prototype.$http= axios
+
+if (location.hostname === 'localhost') {
+axios.defaults.baseURL = process.env.API_ROOT
+} else if (location.hostname === 'gdlearn.com') {
+axios.defaults.baseURL = process.env.API_ROOT
+} 
 fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
 

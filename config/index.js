@@ -6,7 +6,9 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
+    env: {
+      NODE_ENV: '"development"'
+    },
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -19,7 +21,7 @@ module.exports = {
         } 
       }
     },
-
+    
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 9999, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
@@ -52,6 +54,9 @@ module.exports = {
   },
 
   build: {
+    env: {
+      NODE_ENV: '"production"'
+    },
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
@@ -59,15 +64,6 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
-    proxyTable: {
-      '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
-      target: 'http://touch.piao.qunar.com', //源地址 
-      changeOrigin: true, //改变源 
-      pathRewrite: { 
-        '^/api': 'http://touch.piao.qunar.com' //路径重写 
-        } 
-      }
-    },
     /**
      * Source Maps
      */
