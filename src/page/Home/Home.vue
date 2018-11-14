@@ -49,8 +49,9 @@ export default {
   },
   methods:{
     GussLike(){
-      
-      this.$http.get('/api/touch/list.json',{
+      if(process.env.NODE_ENV !='production'){
+         this.$http.get('/api/index.php/index/touch',{
+        // this.$http.get('/api/touch/list.json',{
         params: {
           region:'南昌',
           isForeign:false,
@@ -60,13 +61,33 @@ export default {
         }
 
       }).then((response)=>{
-        let res_data=response.data.data
+        let res_data=JSON.parse(response.data).data
+        this.GussList=res_data.sightList
+        console.log('res',res_data)
+        
+      }).catch(function(error){
+        console.log(error)
+      });
+    }else{
+        this.$http.get('/touch/',{
+        params: {
+          region:'南昌',
+          isForeign:false,
+          page:1,
+          pageSize:5,
+          keyword:'江西'
+        }
+
+      }).then((response)=>{
+        let res_data=JSON.parse(response.data).data
         this.GussList=res_data.sightList
         console.log(this.GussList)
         
       }).catch(function(error){
         console.log(error)
       });
+    }
+     
     }
   }
 }

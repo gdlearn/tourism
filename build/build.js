@@ -10,7 +10,7 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
-
+console.log('bud',process.env.NODE_ENV)
 const spinner = ora('building for production...')
 spinner.start()
 

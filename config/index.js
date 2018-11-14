@@ -3,8 +3,9 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+// const config=require('../build/webpack.base.conf')
 module.exports = {
+  envs:'hhhhhhhhh',
   dev: {
     env: {
       NODE_ENV: '"development"'
@@ -14,16 +15,18 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
-      target: 'http://touch.piao.qunar.com', //源地址 
+      // target: 'http://touch.piao.qunar.com', //源地址 
+      target: 'http://wx.gdlearn.com',
       changeOrigin: true, //改变源 
       pathRewrite: { 
-        '^/api': 'http://touch.piao.qunar.com' //路径重写 
+        // '^/api': 'http://touch.piao.qunar.com' //路径重写
+        '^/api': 'http://wx.gdlearn.com'
         } 
       }
     },
     
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.10.58', // can be overwritten by process.env.HOST
     port: 9999, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -67,7 +70,7 @@ module.exports = {
     /**
      * Source Maps
      */
-
+  
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',

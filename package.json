@@ -5,16 +5,17 @@
   "author": "y",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --open --config build/webpack.dev.conf.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --open --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "cross-env NODE_ENV=production node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
     "element-ui": "^2.4.8",
     "fastclick": "^1.0.6",
     "install": "^0.12.2",

@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
+import config from '../config'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import axios from 'axios'
 // import 'babel-polyfill'
@@ -15,12 +16,16 @@ import './assets/styles/iconfont.css'
 
 Vue.config.productionTip = false
 axios.defaults.headers.post['Content-type']="application/json";
+axios.defaults.headers.get['Content-type']="application/json";
 Vue.prototype.$http= axios
-
-if (location.hostname === 'localhost') {
-axios.defaults.baseURL = process.env.API_ROOT
-} else if (location.hostname === 'gdlearn.com') {
-axios.defaults.baseURL = process.env.API_ROOT
+console.log('888888',process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+  console.log('dev')
+// axios.defaults.baseURL = 'http://touch.piao.qunar.com'
+// axios.defaults.baseURL = 'http://wx.gdlearn.com/index.php/index'
+} else if (process.env.NODE_ENV === 'production') {
+  console.log('build')
+axios.defaults.baseURL = 'http://wx.gdlearn.com/index.php/index'
 } 
 fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
