@@ -27,7 +27,7 @@ export default new Router({
     component: Oneday
   },
   {
-    path: '/TourDetail',
+    path: '/TourDetail/:DetailId',
     name: 'TourDetail',
     component: TourDetail
   },

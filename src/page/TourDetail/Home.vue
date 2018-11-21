@@ -16,6 +16,9 @@
 					<div class="xq-imgswipeicon-img"><img src="http://mquanquan.com/static/image/erma/tourism/ly-iconimg.png"></div>
 					<em class="xq-imgswipeicon-number">30</em>
 				</div>
+				 <div class="goback" v-on:click="goback">
+                    <span class="lb-header-left"></span>
+                </div>
 			</div>
 			<!-- 详情页评分、地址栏 -->
 			<div class="xq-baseinfo">
@@ -141,7 +144,50 @@
 
 <script>
 export default {
-
+	name:"tourdetail",
+	data(){
+		return {
+			TourList:[]
+		}
+	},
+	created(){},
+	mounted(){
+		this.getDetail(this.$route.params.DetailId)
+	},
+	watch:{
+    $route(to,from){
+			// console.log(to,from);
+			if(to.name=="TourDetail"){
+				console.log('id',this.$route.params.DetailId)
+				this.getDetail(this.$route.params.DetailId)
+			}
+    	}
+	
+	},
+	computed:{
+		// ShowGussList(){
+		// return this.GussList.length
+		// }
+  	},
+	methods:{
+		getDetail(DetailId){
+			console.log('id',DetailId)
+			this.$http.get(this.$env_url+'/index.php/index/detail',{
+				params:{
+					DetailId
+				}
+			}).then(response=>{
+				console.log('tourlist',response)
+				// let datas=JSON.parse(response.data).data
+				// this.TourList=datas
+			}).catch(function(error){
+			console.log(error)
+			});
+		},
+		goback:function(){
+           this.$router.push('/')
+        }
+	}
 }
 </script>
 
@@ -158,6 +204,19 @@ a:hover, a:visited, a:link, a:active {
 	em{
 		font-style: normal;
 	}
+	.goback{
+        position:absolute;
+        left: 0.2rem;
+        top: 0.5rem;
+    }
+    .lb-header-left{
+		background: url('http://mquanquan.com/static/image/erma/ly-iconleft.png') no-repeat left 50%;
+            background-size: 100%;
+            display: block;
+            width: 0.5rem;
+            height: 0.5rem;
+            padding-left: 0.1rem;
+	}  
 	.xq-page{
 		position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background-color: #f5f5f5;
 	}

@@ -7,7 +7,7 @@
         <div class="guss-list">
             <ul class="guss-list-ul">
                 <li class="guss-list-li" v-for="item of GussList" :key="item.id">
-                    <router-link to='/' class="guss-route">
+                    <router-link :to="'/TourDetail/' + item.id" class="guss-route">
                         <div class="guss-img">
                             <img :src="item.imgURL" alt="">
                             <span class="lb-sight-bookingflag" v-if="item.bookingTag">{{item.bookingTag.label}}</span>

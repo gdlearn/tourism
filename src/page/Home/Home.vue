@@ -13,6 +13,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import GussLike from './components/GussLike'
 import HotRank from  './components/HotRank'
+import {HomeHot}  from  '../../source/getData'
 // import HotRank from './components/hotrank'
 // import HomeWeekend from './components/Weekend'
 // import axios from 'axios'
@@ -36,11 +37,11 @@ export default {
   },
   created(){
     console.log(123132)
-    this.GussLike()
+    
   },
   mounted () {
-    
-    console.log(456465)
+    this.GussLike()
+   
   },
   computed:{
     ShowGussList(){
@@ -48,47 +49,26 @@ export default {
     }
   },
   methods:{
-    GussLike(){
-      if(process.env.NODE_ENV !='production'){
-         this.$http.get('/api/index.php/index/touch',{
-        // this.$http.get('/api/touch/list.json',{
-        params: {
-          region:'南昌',
-          isForeign:false,
-          page:1,
-          pageSize:5,
-          keyword:'江西'
-        }
+      GussLike(){
+          this.$http.get(this.$env_url+'/index.php/index/touch',{
+            params: {
+            type:"list",
+            region:'南昌',
+            isForeign:false,
+            page:1,
+            pageSize:5,
+            keyword:'江西'
+          }
 
-      }).then((response)=>{
-        let res_data=JSON.parse(response.data).data
-        this.GussList=res_data.sightList
-        console.log('res',res_data)
-        
-      }).catch(function(error){
-        console.log(error)
-      });
-    }else{
-        this.$http.get('/touch/',{
-        params: {
-          region:'南昌',
-          isForeign:false,
-          page:1,
-          pageSize:5,
-          keyword:'江西'
-        }
-
-      }).then((response)=>{
-        let res_data=JSON.parse(response.data).data
-        this.GussList=res_data.sightList
-        console.log(this.GussList)
-        
-      }).catch(function(error){
-        console.log(error)
-      });
-    }
-     
-    }
+        }).then((response)=>{
+          let res_data=response.data.data
+          this.GussList=res_data.sightList
+          console.log('res',res_data)
+          
+        }).catch(function(error){
+          console.log(error)
+        });
+      }
   }
 }
 </script>

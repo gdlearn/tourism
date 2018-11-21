@@ -350,8 +350,10 @@ export default {
 	methods:{
 		sendDetailAjax:function(params){
             // if(params=="" || params=="null")return false;
-           this.$http.get('/api/touch/productdetail.json?',{
+           this.$http.get(this.$env_url+'/index.php/index/touch',{
+               
                params:{
+                   type:'productdetail',
                    productId:params
                }
            }).then(response=>{

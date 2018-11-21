@@ -80,7 +80,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {bus} from "../../Comm/bus.js"
 export default {
 	name:"Tablist",
@@ -110,8 +109,10 @@ export default {
 	},
 	methods:{
 		sendAjax:function(params){
-			this.$http.get('/api/touch/list.json?',{
+			console.log('envs',this.$env_url)
+			this.$http.get(this.$env_url+'/index.php/index/touch',{
 				params: {
+				type:"list",
 				region:'南昌',
 				cityName:'南昌',
 				isForeign:false,
@@ -122,10 +123,11 @@ export default {
         		}
 			}).then((response)=>{
 			let res_data=response.data.data
+			// console.log('res_data',response)
 			if(res_data.ticketList){
 				this.GussList=res_data.ticketList
 				this.sendBrother(this.GussList)
-				console.log('123123')
+				// console.log('123123')
 			}else{
 				this.GussList=res_data.sightList
 			}

@@ -8,7 +8,7 @@
             </div>
             <ul class="mp-hotsale-list">
                 <li class="mp-hotsale-item" v-for="(item,index) of HotRank" :key="item.id">
-                    <a class="mp-fulllink" href="http://touch.piao.qunar.com/touch/detail.htm?id=24002&amp;from=as_recommend_sight" data-click="ts_hotsale" data-click-index="0">
+                    <router-link :to="'/TourDetail/' + item.id" class="mp-fulllink"  data-click="ts_hotsale" data-click-index="0">
                         <div class="mp-hotsale-tag image-ready" v-if="index<3">
                             <img class="mp-hotsale-tagimg" :src="'http://mquanquan.com/static/image/erma/tourism/top'+(index+1)+'.png'">
                         </div>
@@ -19,7 +19,7 @@
                         <div class="mp-hotsale-price">
                         <span class="mpg-price">¥<em class="mpg-price-num">{{item.qunarPrice}}</em></span>起
                         </div>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>  
