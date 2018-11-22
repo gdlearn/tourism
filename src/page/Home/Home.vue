@@ -12,63 +12,60 @@ import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import GussLike from './components/GussLike'
-import HotRank from  './components/HotRank'
-import {HomeHot}  from  '../../source/getData'
+import HotRank from './components/HotRank'
+// import {HomeHot} from '../../source/getData'
 // import HotRank from './components/hotrank'
 // import HomeWeekend from './components/Weekend'
 // import axios from 'axios'
 // import { mapState } from 'vuex'
 export default {
- name:'Home',
- components: {
+  name: 'Home',
+  components: {
     HomeHeader,
     HomeSwiper,
     HomeIcons,
     GussLike,
-    HotRank,
-   
+    HotRank
+
   },
-  data(){
+  data () {
     return {
-      name:'ddddd',
-      GussList:[],
-      
+      name: 'ddddd',
+      GussList: []
+
     }
   },
-  created(){
+  created () {
     console.log(123132)
-    
   },
   mounted () {
     this.GussLike()
-   
   },
-  computed:{
-    ShowGussList(){
+  computed: {
+    ShowGussList () {
       return this.GussList.length
     }
   },
-  methods:{
-      GussLike(){
-          this.$http.get(this.$env_url+'/index.php/index/touch',{
-            params: {
-            type:"list",
-            region:'南昌',
-            isForeign:false,
-            page:1,
-            pageSize:5,
-            keyword:'江西'
-          }
+  methods: {
+    GussLike () {
+      this.$http.get(this.$env_url + '/index.php/index/touch', {
+        params: {
+          type: 'list',
+          region: '南昌',
+          isForeign: false,
+          page: 1,
+          pageSize: 5,
+          keyword: '江西'
+        }
 
-        }).then((response)=>{
-          let res_data=response.data.data
-          this.GussList=res_data.sightList
-          console.log('res',res_data)
-          
-        }).catch(function(error){
-          console.log(error)
-        });
-      }
+      }).then((response) => {
+        // let res_datas = response.data.data
+        this.GussList = response.data.data.sightList
+        console.log('res', response.data.data)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
   }
 }
 </script>

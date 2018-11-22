@@ -18,7 +18,7 @@
                                <span class="guss-info-comment-star">
                                   *******
                                 </span>
-                               <span class="guss-info-comment-num">{{item.commentCount}}条评论</span> 
+                               <span class="guss-info-comment-num">{{item.commentCount}}条评论</span>
                             </div>
                             <div class="guss-info-local">
                                 <span class="guss-info-price">￥{{item.qunarPrice}}<span style="color:#000;font-size:0.1rem">起</span></span>
@@ -30,7 +30,7 @@
                         </div>
                     </router-link>
                 </li>
-                
+
             </ul>
         </div>
     </div>
@@ -38,12 +38,12 @@
 
 <script>
 export default {
- name:'GussList',
- props:{
-     GussList:Array
- },
- data(){
-     return {
+  name: 'GussList',
+  props: {
+    GussList: Array
+  },
+  data () {
+    return {
     //     GussLikelist:[{
     //         id:'1',
     //         title:'江西绿地中心303观光厅',
@@ -83,8 +83,8 @@ export default {
     //         star:'5'
     //     }
     //     ]
-     }
- }
+    }
+  }
 }
 </script>
 
@@ -114,7 +114,7 @@ export default {
 
 }
 .guss-list-li{
-  
+
     width: 95%;
     padding: 2% 2% 2% 3%;
     background: #fff;
@@ -130,7 +130,7 @@ export default {
 }
 .guss-img img{
     width 100%
-    
+
 }
 .guss-info{
        width: 80%;

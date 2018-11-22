@@ -7,7 +7,7 @@
 		</div>
 		<span class="lb-header-right">
 			<a href="" class="lb-search-submit">搜索</a>
-		</span>	
+		</span>
 	</div>
 
 	<!-- 分类栏 -->
@@ -70,79 +70,75 @@
 					</div> -->
 				</div>
 			</li>
-			
-			
+
 		</ul>
-		
 		<span>132123 {{this.$route.params.keywords}}</span>
 	</div>
     </div>
 </template>
 
 <script>
-import {bus} from "../../Comm/bus.js"
+import {bus} from '../../Comm/bus.js'
 export default {
-	name:"Tablist",
-	data(){
-		return {
-			GussList:[]
-		}
-	},
-	created(){
-		console.log('tablist')
-		this.sendAjax(this.$route.params.keywords)
-	},
-	mounted(){
-		
-	},
-	computed:{
-		
-	},
-	watch:{
-    $route(to,from){
-			// console.log(to,from);
-			if(to.name=="TabList"){
-				console.log(this.$route.params.keywords)
-				this.sendAjax(this.$route.params.keywords)
-			}
-    	}
-	},
-	methods:{
-		sendAjax:function(params){
-			console.log('envs',this.$env_url)
-			this.$http.get(this.$env_url+'/index.php/index/touch',{
-				params: {
-				type:"list",
-				region:'南昌',
-				cityName:'南昌',
-				isForeign:false,
-				page:1,
-				limitCondition:params=="一日游"?'oneDayTour':"",
-				pageSize:10,
-				keyword:params
-        		}
-			}).then((response)=>{
-			let res_data=response.data.data
-			// console.log('res_data',response)
-			if(res_data.ticketList){
-				this.GussList=res_data.ticketList
-				this.sendBrother(this.GussList)
-				// console.log('123123')
-			}else{
-				this.GussList=res_data.sightList
-			}
-			console.log(this.GussList)
-			
-			}).catch(function(error){
-			console.log(error)
-			});
-		},
-		sendBrother:function(oneday)
-		{
-			   bus.$emit('oneday',oneday);
+  name: 'Tablist',
+  data () {
+    return {
+      GussList: []
+    }
+  },
+  created () {
+    console.log('tablist')
+    this.sendAjax(this.$route.params.keywords)
+  },
+  mounted () {
+
+  },
+  computed: {
+
+  },
+  watch: {
+    $route (to, from) {
+      // console.log(to,from);
+      if (to.name == 'TabList') {
+        console.log(this.$route.params.keywords)
+        this.sendAjax(this.$route.params.keywords)
+      }
+    }
+  },
+  methods: {
+    sendAjax: function (params) {
+      console.log('envs', this.$env_url)
+      this.$http.get(this.$env_url + '/index.php/index/touch', {
+        params: {
+          type: 'list',
+          region: '南昌',
+          cityName: '南昌',
+          isForeign: false,
+          page: 1,
+          limitCondition: params == '一日游' ? 'oneDayTour' : '',
+          pageSize: 10,
+          keyword: params
+        }
+      }).then((response) => {
+        let res_data = response.data.data
+        // console.log('res_data',response)
+        if (res_data.ticketList) {
+          this.GussList = res_data.ticketList
+          this.sendBrother(this.GussList)
+          // console.log('123123')
+        } else {
+          this.GussList = res_data.sightList
+        }
+        console.log(this.GussList)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    sendBrother: function (oneday) {
+			   bus.$emit('oneday', oneday)
 			  this.$router.push('../Oneday')
-		}
-	}
+    }
+  }
 
 }
 </script>

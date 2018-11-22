@@ -22,24 +22,24 @@
                     </router-link>
                 </li>
             </ul>
-        </div>  
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name:'HotRank',
-    props:{
-     HotRank:Array
-    },
-    data(){
-        return {
-            // HotRank:[]
-        }
-    },
-    created(){
-        console.log('46456',this.HotRank)
+  name: 'HotRank',
+  props: {
+    HotRank: Array
+  },
+  data () {
+    return {
+      // HotRank:[]
     }
+  },
+  created () {
+    console.log('46456', this.HotRank)
+  }
 }
 </script>
 

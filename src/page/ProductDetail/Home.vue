@@ -24,7 +24,7 @@
             <em class="mp-prdcard-priceicon">¥</em>
             <span class="mp-prdcard-pricetext">{{ProductDetail.qunarPrice}}</span>
         </div>
-        <div class="mp-prddetail-tagarea">   
+        <div class="mp-prddetail-tagarea">
                 <div class="mp-prddetail-ul">
                     <div class="mp-prddetail-li">
                         <img class="mp-playlimit-icon" src="//img1.qunarzz.com/piao/fusion/1804/25/792e9929973a9902.png">可订明日
@@ -77,7 +77,7 @@
                                     <p class="mp-ticketcontent-desc">{{item_yuding.desc}}</p>
                                 </div>
                             </div> -->
-                          
+
                     </div>
 
                     <div class="mp-ticketcontent-item">
@@ -103,8 +103,6 @@
 
                             <!-- <p class="mp-ticketcontent-line"><span class="mp-ticketcontent-keyword">景区开放时间：</span></p>
                             <p class="mp-ticketcontent-desc">07:30～17:00开放；</p> -->
-                        
-
 
                     </div>
                     <!-- 退款说明 -->
@@ -136,13 +134,13 @@
                             <p class="mp-ticketcontent-title">使用说明</p>
                             <!-- <p class="mp-ticketcontent-line">{{ProductDetail.productBookingInfo.usingDescription.desc}}</p> -->
                         </div>
-            
+
                 <div class="mp-ticketcontent-more" mp-role="useDescMoreBtn" style="display: block;">
                     <div mp-role="moreShaddow" class="mp-ticketcontent-shadow"></div>
                     <span mp-role="moreText">更多购票须知</span><span class="mp-iconfont mp-ticketcontent-arrow" mp-role="useDescMoreArrow">E</span>
                 </div>
                 </div>
-                
+
             </div>
             <div class="mp-prddetail-group">
                     <h3 class="mp-prddetail-title">景区信息</h3>
@@ -320,54 +318,54 @@
 </template>
 <script>
 export default {
-    name:'home',
-    data(){
-        return{
-            ProductDetail:[]
-        }
-    },
-   created(){
-        console.log(this.$route.params.ProductId)
-        // this.lisenToMyBoy()
+  name: 'home',
+  data () {
+    return {
+      ProductDetail: []
+    }
+  },
+  created () {
+    console.log(this.$route.params.ProductId)
+    // this.lisenToMyBoy()
 		 this.sendDetailAjax(this.$route.params.ProductId)
-	},
-	mounted(){
-		
-	},
-	computed:{
-		
-	},
-	watch:{
-    $route(to,from){
-			// console.log(to,from);
-			if(to.name=="ProductDetail"){
-				console.log(this.$route.params.ProductId)
-				this.sendDetailAjax(this.$route.params.ProductId)
-			}
+  },
+  mounted () {
+
+  },
+  computed: {
+
+  },
+  watch: {
+    $route (to, from) {
+      // console.log(to,from);
+      if (to.name == 'ProductDetail') {
+        console.log(this.$route.params.ProductId)
+        this.sendDetailAjax(this.$route.params.ProductId)
+      }
     	}
-	
-	},
-	methods:{
-		sendDetailAjax:function(params){
-            // if(params=="" || params=="null")return false;
-           this.$http.get(this.$env_url+'/index.php/index/touch',{
-               
-               params:{
-                   type:'productdetail',
-                   productId:params
-               }
-           }).then(response=>{
-               console.log('productdetail',response.data.data)
-               this.ProductDetail=response.data.data
-           }).catch(error=>{
-               console.log(error)
-           });
-        },
-        goback:function(){
-           this.$router.back(-1)
+
+  },
+  methods: {
+    sendDetailAjax: function (params) {
+      // if(params=="" || params=="null")return false;
+      this.$http.get(this.$env_url + '/index.php/index/touch', {
+
+        params: {
+          type: 'productdetail',
+          productId: params
         }
-	}
-    
+      }).then(response => {
+        console.log('productdetail', response.data.data)
+        this.ProductDetail = response.data.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    goback: function () {
+      this.$router.back(-1)
+    }
+  }
+
 }
 </script>
 
@@ -387,7 +385,7 @@ export default {
             width: 0.5rem;
             height: 0.5rem;
             padding-left: 0.1rem;
-	}    
+	}
 	.xq-headfigure-wrap{
 		overflow: hidden; height: 0; width: 100%; padding-bottom: 55%;
 	}
@@ -981,7 +979,7 @@ img, object, input, textarea, button, select {
 #moreprice-con{
     margin-bottom:0.88rem;
 }
-// 底部下单 
+// 底部下单
 .mp-fixbooking-con {
     position: fixed;
     z-index: 82;

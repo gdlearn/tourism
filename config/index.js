@@ -5,7 +5,7 @@
 const path = require('path')
 // const config=require('../build/webpack.base.conf')
 module.exports = {
-  envs:'hhhhhhhhh',
+  envs: 'hhhhhhhhh',
   dev: {
     env: {
       NODE_ENV: '"development"'
@@ -14,17 +14,17 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
-      // target: 'http://touch.piao.qunar.com', //源地址 
-      target: 'http://wx.gdlearn.com',
-      changeOrigin: true, //改变源 
-      pathRewrite: { 
+      '/api': { // 使用"/api"来代替"http://f.apiplus.c"
+      // target: 'http://touch.piao.qunar.com', //源地址
+        target: 'http://wx.gdlearn.com',
+        changeOrigin: true, // 改变源
+        pathRewrite: {
         // '^/api': 'http://touch.piao.qunar.com' //路径重写
-        '^/api': 'http://wx.gdlearn.com'
-        } 
+          '^/api': 'http://wx.gdlearn.com'
+        }
       }
     },
-    
+
     // Various Dev Server settings
     host: '192.168.10.58', // can be overwritten by process.env.HOST
     port: 9999, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
@@ -37,7 +37,7 @@ module.exports = {
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
     useEslint: false,
-    // If true, eslint errors and warnings will also be shown in the error overlay
+    // If false, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
 
@@ -70,7 +70,7 @@ module.exports = {
     /**
      * Source Maps
      */
-  
+
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',

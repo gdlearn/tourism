@@ -6,16 +6,16 @@
 </template>
 <script>
 export default {
- name:'List',
- methods:{
-     goback(){
-        //  console.log(456465)
-        this.$router.back(-1)
-     }
- },
- computed:{
+  name: 'List',
+  methods: {
+    goback () {
+      //  console.log(456465)
+      this.$router.back(-1)
+    }
+  },
+  computed: {
 
- }
+  }
 }
 </script>
 <style>
